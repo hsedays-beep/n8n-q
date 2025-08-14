@@ -1,4 +1,4 @@
-FROM n8nio/n8n:1.62.5
+FROM n8nio/n8n:latest
 
 USER root
 
@@ -16,3 +16,4 @@ USER node
 
 # Проверяем, что n8n доступен
 RUN n8n --version
+
