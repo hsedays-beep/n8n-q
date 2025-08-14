@@ -38,6 +38,7 @@ services:
   n8n-main:
     image: n8nio/n8n:latest
     restart: unless-stopped
+    command: start
     depends_on:
       postgres:
         condition: service_healthy
