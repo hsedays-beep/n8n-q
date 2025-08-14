@@ -38,12 +38,11 @@ services:
   n8n-main:
     image: n8nio/n8n:latest
     restart: unless-stopped
-   
     depends_on:
       postgres:
         condition: service_healthy
       redis:
-       condition: service_healthy
+        condition: service_healthy
     environment:
       # Queue Mode
       EXECUTIONS_MODE: queue
@@ -91,15 +90,13 @@ services:
       N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"
       N8N_DIAGNOSTICS_ENABLED: "false"
     volumes:
-      - /root/server-stack/n8n_data:/home/node/.n8n
+      - n8n_data:/home/node/.n8n
     networks:
       - n8n-network
 
   n8n-worker:
     image: n8nio/n8n:latest
-    container_name: n8n-worker
     restart: unless-stopped
-   
     depends_on:
       postgres:
         condition: service_healthy
@@ -143,11 +140,11 @@ services:
       N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"
       GENERIC_TIMEZONE: Europe/Moscow
       N8N_DIAGNOSTICS_ENABLED: "false"
+    command: worker
     volumes:
-      - /root/server-stack/n8n_data:/home/node/.n8n
+      - n8n_data:/home/node/.n8n
     networks:
       - n8n-network
-    command: worker
 
 networks:
   n8n-network:
