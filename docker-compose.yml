@@ -149,7 +149,6 @@ services:
       N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"
       GENERIC_TIMEZONE: Europe/Moscow
       N8N_DIAGNOSTICS_ENABLED: "false"
-    command: worker
     volumes:
       - /root/server-stack/n8n_data:/home/node/.n8n
     networks:
