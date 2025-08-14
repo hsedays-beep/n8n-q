@@ -100,7 +100,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.n8n
+    container_name: n8n-worker
     restart: unless-stopped
+
+    entrypoint: []
+    command: ["n8n", "worker"]
+    
     depends_on:
       postgres:
         condition: service_healthy
