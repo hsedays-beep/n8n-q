@@ -1,10 +1,18 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:1.62.5
 
 USER root
 
+# Устанавливаем необходимые пакеты
 RUN apk add --no-cache ffmpeg python3 py3-pip && \
     pip3 install yt-dlp --break-system-packages && \
+    # Убедимся, что бинарный файл n8n доступен и имеет правильные разрешения
     chmod +x /usr/local/bin/n8n && \
     chown node:node /usr/local/bin/n8n
 
+# Устанавливаем PATH для пользователя node
+ENV PATH=$PATH:/usr/local/bin
+
 USER node
+
+# Проверяем, что n8n доступен
+RUN n8n --version
