@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./pg_data:/var/lib/postgresql/data
+      - /root/server-stack/pg_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U n8n -d n8n"]
       interval: 10s
@@ -91,7 +91,7 @@ services:
       N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"
       N8N_DIAGNOSTICS_ENABLED: "false"
     volumes:
-     - ./n8n_data:/home/node/.n8n
+     - /root/server-stack/n8n_data:/home/node/.n8n
     networks:
       - n8n-network
 
@@ -143,7 +143,7 @@ services:
       N8N_DIAGNOSTICS_ENABLED: "false"
     command: worker
     volumes:
-     - ./n8n_data:/home/node/.n8n
+     - /root/server-stack/n8n_data:/home/node/.n8n
     networks:
       - n8n-network
 
