@@ -3,6 +3,8 @@ FROM n8nio/n8n:latest
 USER root
 
 RUN apk add --no-cache ffmpeg python3 py3-pip && \
-    pip3 install yt-dlp --break-system-packages
+    pip3 install yt-dlp --break-system-packages && \
+    chmod +x /usr/local/bin/n8n && \
+    chown node:node /usr/local/bin/n8n
 
 USER node
