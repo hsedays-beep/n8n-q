@@ -36,7 +36,9 @@ services:
       - n8n-network
 
   n8n-main:
-    image: n8nio/n8n:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.n8n
     restart: unless-stopped
     depends_on:
       postgres:
@@ -95,7 +97,9 @@ services:
       - n8n-network
 
   n8n-worker:
-    image: n8nio/n8n:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.n8n
     restart: unless-stopped
     depends_on:
       postgres:
