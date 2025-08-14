@@ -36,12 +36,10 @@ services:
       - n8n-network
 
   n8n-main:
-    build:
-      context: .
-      dockerfile: Dockerfile.n8n
+    image: n8nio/n8n:latest
     restart: unless-stopped
     
-    command: ["n8n", "start"]
+    command: ["/bin/sh", "-c", "apk add --no-cache ffmpeg python3 py3-pip && pip3 install yt-dlp --break-system-packages && n8n start"]
     
     depends_on:
       postgres:
@@ -100,13 +98,11 @@ services:
       - n8n-network
 
   n8n-worker:
-    build:
-      context: .
-      dockerfile: Dockerfile.n8n
+    image: n8nio/n8n:latest
     container_name: n8n-worker
     restart: unless-stopped
 
-    command: ["n8n", "worker"]
+    command: ["/bin/sh", "-c", "apk add --no-cache ffmpeg python3 py3-pip && pip3 install yt-dlp --break-system-packages && n8n worker"]
     
     depends_on:
       postgres:
