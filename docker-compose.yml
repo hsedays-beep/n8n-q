@@ -40,6 +40,9 @@ services:
       context: .
       dockerfile: Dockerfile.n8n
     restart: unless-stopped
+    
+    command: ["n8n", "start"]
+    
     depends_on:
       postgres:
         condition: service_healthy
@@ -103,7 +106,6 @@ services:
     container_name: n8n-worker
     restart: unless-stopped
 
-    entrypoint: []
     command: ["n8n", "worker"]
     
     depends_on:
