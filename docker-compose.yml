@@ -10,9 +10,9 @@ services:
       POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - /root/server-stack/pg_data_fixed:/var/lib/postgresql/data
+      - /root/server-stack/pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n -d n8n"]
+      test: ["CMD-SHELL","pg_isready -U n8n -d n8n"]
       interval: 10s
       timeout: 10s
       retries: 10
